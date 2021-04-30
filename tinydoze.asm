@@ -113,8 +113,6 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
     mov windowClass.hIcon, eax
     mov windowClass.hIconSm, eax
 
-    mov eax, g_hInstance
-
     invoke LoadCursorA,
         0,
         IDC_ARROW

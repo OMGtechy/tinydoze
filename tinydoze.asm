@@ -142,9 +142,9 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
 
 MessageLoop:
 
-    lea eax, message
+    lea ebx, message
     invoke GetMessage,
-        eax,
+        ebx,
         0,
         0,
         0
@@ -152,13 +152,11 @@ MessageLoop:
     cmp eax, 0
     je NoMoreMessages
 
-    lea eax, message
     invoke TranslateMessage,
-        eax
+        ebx
 
-    lea eax, message
     invoke DispatchMessage,
-        eax
+        ebx
 
     jmp MessageLoop
 

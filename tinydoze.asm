@@ -90,30 +90,32 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
     LOCAL windowClass : WNDCLASSEX
     LOCAL message : MSG
 
+    xor ebx, ebx
+
 	invoke 	GetModuleHandle,
-        0
+        ebx
 
 	mov	g_hInstance, eax
 
     mov windowClass.cbSize, sizeof windowClass
     mov windowClass.style, CS_HREDRAW or CS_VREDRAW
     mov windowClass.lpfnWndProc, offset WndProc
-    mov windowClass.cbClsExtra, 0
-    mov windowClass.cbWndExtra, 0
+    mov windowClass.cbClsExtra, ebx
+    mov windowClass.cbWndExtra, ebx
     mov windowClass.hInstance, eax
     mov windowClass.hbrBackground, COLOR_3DSHADOW + 1
-    mov windowClass.lpszMenuName, 0
+    mov windowClass.lpszMenuName, ebx
     mov windowClass.lpszClassName, offset c_WindowClassName
 
     invoke LoadIconA,
-        0,
+        ebx,
         IDI_APPLICATION
 
     mov windowClass.hIcon, eax
     mov windowClass.hIconSm, eax
 
     invoke LoadCursorA,
-        0,
+        ebx,
         IDC_ARROW
 
     mov windowClass.hCursor, eax
@@ -123,7 +125,7 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
         eax
 
     invoke CreateWindowEx, 
-        0,
+        ebx,
         offset c_WindowClassName,
         offset c_AppName,
         WS_OVERLAPPEDWINDOW or WS_VISIBLE,
@@ -131,10 +133,10 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
         CW_USEDEFAULT,
         800,
         600,
-        0,
-        0,
+        ebx,
+        ebx,
         g_hInstance,
-        0
+        ebx
 
     invoke UpdateWindow,
         eax

@@ -11,9 +11,10 @@ includelib \masm32\lib\kernel32.lib
 includelib \masm32\lib\user32.lib
 includelib \masm32\lib\gdi32.lib
 
+c_WindowClassName = 16
+
 .data
 
-c_WindowClassName byte "U", 0
 c_AppName byte "Josh's Tiny App", 0
 
 .data?
@@ -94,9 +95,6 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
         0
 
 	mov	g_hInstance, eax
-
-    mov eax, hInstance
-    mov g_hInstance, eax
 
     mov windowClass.cbSize, sizeof windowClass
     mov windowClass.style, CS_HREDRAW or CS_VREDRAW

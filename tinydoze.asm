@@ -54,17 +54,16 @@ PaintMessageHandler:
         hDeviceContext,
         TRANSPARENT
 
-    lea eax, clientRect
+    lea ebx, clientRect
     invoke GetClientRect,
         hWindow,
-        eax
+        ebx
 
-    lea eax, clientRect
     invoke DrawText,
         hDeviceContext,
         offset c_AppName,
         -1,
-        eax,
+        ebx,
         DT_CENTER or DT_VCENTER or DT_SINGLELINE
 
     lea eax, paintStructure

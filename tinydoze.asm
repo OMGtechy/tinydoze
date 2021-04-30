@@ -13,7 +13,7 @@ includelib \masm32\lib\gdi32.lib
 
 .data
 
-c_WindowClassName byte "MyWindowClass", 0
+c_WindowClassName byte "U", 0
 c_AppName byte "Josh's Tiny App", 0
 
 .data?

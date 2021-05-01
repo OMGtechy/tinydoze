@@ -144,12 +144,14 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
 
 MessageLoop:
 
+    xor eax, eax
+
     lea ebx, message
     invoke GetMessage,
         ebx,
-        0,
-        0,
-        0
+        eax,
+        eax,
+        eax
 
     test eax, eax
     je NoMoreMessages

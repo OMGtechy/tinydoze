@@ -78,9 +78,7 @@ ReturnFromMessageHandler:
 
 WndProc endp
 
-_WinMainCRTStartup:
-
-WinMain proc _unused:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWORD
+start proc
     LOCAL windowClass : WNDCLASSEX
     LOCAL message : MSG
 
@@ -159,6 +157,6 @@ NoMoreMessages:
     mov eax, message.wParam
     ret
 
-WinMain endp
+start endp
 
-end _WinMainCRTStartup
+end start

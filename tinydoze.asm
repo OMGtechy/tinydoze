@@ -91,6 +91,16 @@ WinMain proc _unused:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWOR
 
     push ebx
 	push eax
+    push ebx
+    push ebx
+    push 480 ; you could write an 8 bit value here to use a smaller op code and save space
+    push 600 ; but I didn't count that as "functionally equivalent"
+    mov edx, CW_USEDEFAULT
+    push edx
+    push edx
+    push WS_OVERLAPPEDWINDOW or WS_VISIBLE
+    mov ecx, offset c_AppName
+    push ecx
 
     mov windowClass.cbSize, sizeof windowClass
     mov windowClass.style, CS_HREDRAW or CS_VREDRAW
@@ -100,7 +110,7 @@ WinMain proc _unused:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWOR
     mov windowClass.hInstance, eax
     mov windowClass.hbrBackground, COLOR_3DSHADOW + 1
     mov windowClass.lpszMenuName, ebx
-    mov windowClass.lpszClassName, offset c_AppName
+    mov windowClass.lpszClassName, ecx
 
     invoke LoadIconA,
         ebx,
@@ -119,15 +129,6 @@ WinMain proc _unused:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWOR
     invoke RegisterClassEx,
         eax
 
-    push ebx
-    push ebx
-    push 480 ; you could write an 8 bit value here to use a smaller op code and save space
-    push 600 ; but I didn't count that as "functionally equivalent"
-    mov edx, CW_USEDEFAULT
-    push edx
-    push edx
-    push WS_OVERLAPPEDWINDOW or WS_VISIBLE
-    push offset c_AppName
     push eax
     push ebx
     call CreateWindowEx

@@ -123,7 +123,7 @@ WinMain proc _unused:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWOR
 
     invoke CreateWindowEx, 
         ebx,
-        offset c_WindowClassName,
+        eax,
         offset c_AppName,
         WS_OVERLAPPEDWINDOW or WS_VISIBLE,
         CW_USEDEFAULT,

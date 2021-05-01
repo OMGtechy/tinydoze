@@ -132,8 +132,8 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
         WS_OVERLAPPEDWINDOW or WS_VISIBLE,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
-        800,
-        600,
+        600, ; you could write an 8 bit value here to use a smaller op code and save space
+        480, ; but I didn't count that as "functionally equivalent"
         ebx,
         ebx,
         g_hInstance,

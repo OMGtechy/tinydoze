@@ -47,7 +47,7 @@ PaintMessageHandler:
     mov hDeviceContext, eax
 
     invoke SetBkMode,
-        hDeviceContext,
+        eax,
         TRANSPARENT
 
     lea ebx, clientRect

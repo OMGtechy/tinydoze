@@ -151,7 +151,7 @@ MessageLoop:
         0,
         0
 
-    cmp eax, 0
+    test eax, eax
     je NoMoreMessages
 
     invoke TranslateMessage,

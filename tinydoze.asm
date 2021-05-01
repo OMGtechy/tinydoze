@@ -139,9 +139,6 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
         g_hInstance,
         ebx
 
-    invoke UpdateWindow,
-        eax
-
 MessageLoop:
 
     xor eax, eax

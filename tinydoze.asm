@@ -71,13 +71,14 @@ PaintMessageHandler:
         hWindow,
         eax
 
-    xor eax, eax
-    ret
+    jmp ReturnFromMessageHandler
 
 DestroyMessageHandler:
 
     invoke PostQuitMessage,
         0
+
+ReturnFromMessageHandler:
 
     xor eax, eax
     ret

@@ -123,8 +123,9 @@ WinMain proc _unused:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWOR
     push ebx
     push 480 ; you could write an 8 bit value here to use a smaller op code and save space
     push 600 ; but I didn't count that as "functionally equivalent"
-    push CW_USEDEFAULT
-    push CW_USEDEFAULT
+    mov edx, CW_USEDEFAULT
+    push edx
+    push edx
     push WS_OVERLAPPEDWINDOW or WS_VISIBLE
     push offset c_AppName
     push eax

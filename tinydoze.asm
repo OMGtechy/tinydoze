@@ -85,14 +85,14 @@ _WinMainCRTStartup:
 WinMain proc _unused:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWORD
     LOCAL windowClass : WNDCLASSEX
     LOCAL message : MSG
-    LOCAL hInstance : HINSTANCE
 
     xor ebx, ebx
 
 	invoke GetModuleHandle,
         ebx
 
-	mov	hInstance, eax
+    push ebx
+	push eax
 
     mov windowClass.cbSize, sizeof windowClass
     mov windowClass.style, CS_HREDRAW or CS_VREDRAW
@@ -121,19 +121,17 @@ WinMain proc _unused:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWOR
     invoke RegisterClassEx,
         eax
 
-    invoke CreateWindowEx, 
-        ebx,
-        eax,
-        offset c_AppName,
-        WS_OVERLAPPEDWINDOW or WS_VISIBLE,
-        CW_USEDEFAULT,
-        CW_USEDEFAULT,
-        600, ; you could write an 8 bit value here to use a smaller op code and save space
-        480, ; but I didn't count that as "functionally equivalent"
-        ebx,
-        ebx,
-        hInstance,
-        ebx
+    push ebx
+    push ebx
+    push 480 ; you could write an 8 bit value here to use a smaller op code and save space
+    push 600 ; but I didn't count that as "functionally equivalent"
+    push CW_USEDEFAULT
+    push CW_USEDEFAULT
+    push WS_OVERLAPPEDWINDOW or WS_VISIBLE
+    push offset c_AppName
+    push eax
+    push ebx
+    call CreateWindowEx
 
 MessageLoop:
 

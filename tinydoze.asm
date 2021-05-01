@@ -11,8 +11,6 @@ includelib \masm32\lib\kernel32.lib
 includelib \masm32\lib\user32.lib
 includelib \masm32\lib\gdi32.lib
 
-c_WindowClassName = 16
-
 .data
 
 c_AppName byte "Josh's Tiny App", 0
@@ -102,7 +100,7 @@ WinMain proc _unused:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWOR
     mov windowClass.hInstance, eax
     mov windowClass.hbrBackground, COLOR_3DSHADOW + 1
     mov windowClass.lpszMenuName, ebx
-    mov windowClass.lpszClassName, offset c_WindowClassName
+    mov windowClass.lpszClassName, offset c_AppName
 
     invoke LoadIconA,
         ebx,

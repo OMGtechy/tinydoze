@@ -92,7 +92,7 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
 
     xor ebx, ebx
 
-	invoke 	GetModuleHandle,
+	invoke GetModuleHandle,
         ebx
 
 	mov	g_hInstance, eax

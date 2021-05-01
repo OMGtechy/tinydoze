@@ -21,7 +21,6 @@ c_AppName byte "Josh's Tiny App", 0
 WndProc proc hWindow:HWND, uMsg:UINT, wParam:WPARAM, lParam:LPARAM
 
     LOCAL paintStructure : PAINTSTRUCT
-    LOCAL hDeviceContext : HDC
     LOCAL clientRect : RECT
 
     cmp uMsg, WM_DESTROY
@@ -39,28 +38,29 @@ WndProc proc hWindow:HWND, uMsg:UINT, wParam:WPARAM, lParam:LPARAM
 
 PaintMessageHandler:
 
-    lea eax, paintStructure
-    invoke BeginPaint,
-        hWindow,
-        eax
-
-    mov hDeviceContext, eax
-
-    invoke SetBkMode,
-        eax,
-        TRANSPARENT
-
     lea ebx, clientRect
     invoke GetClientRect,
         hWindow,
         ebx
 
-    invoke DrawText,
-        hDeviceContext,
-        offset c_AppName,
-        -1,
+    lea eax, paintStructure
+    invoke BeginPaint,
+        hWindow,
+        eax
+
+    push DT_CENTER or DT_VCENTER or DT_SINGLELINE
+    push ebx
+
+    xchg ebx, eax
+
+    invoke SetBkMode,
         ebx,
-        DT_CENTER or DT_VCENTER or DT_SINGLELINE
+        TRANSPARENT
+
+    push -1
+    push offset c_AppName
+    push ebx
+    call DrawText
 
     lea eax, paintStructure
     invoke EndPaint,

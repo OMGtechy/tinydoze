@@ -44,6 +44,7 @@ PaintMessageHandler:
         ebx
 
     lea eax, paintStructure
+    push eax
     invoke BeginPaint,
         hWindow,
         eax
@@ -62,10 +63,8 @@ PaintMessageHandler:
     push ebx
     call DrawText
 
-    lea eax, paintStructure
-    invoke EndPaint,
-        hWindow,
-        eax
+    push hWindow
+    call EndPaint
 
     jmp ReturnFromMessageHandler
 

@@ -17,10 +17,6 @@ c_WindowClassName = 16
 
 c_AppName byte "Josh's Tiny App", 0
 
-.data?
-
-g_hInstance HINSTANCE ?
-
 .code
 WndProc proc hWindow:HWND, uMsg:UINT, wParam:WPARAM, lParam:LPARAM
 
@@ -87,16 +83,17 @@ WndProc endp
 
 _WinMainCRTStartup:
 
-WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWORD
+WinMain proc _unused:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DWORD
     LOCAL windowClass : WNDCLASSEX
     LOCAL message : MSG
+    LOCAL hInstance : HINSTANCE
 
     xor ebx, ebx
 
 	invoke GetModuleHandle,
         ebx
 
-	mov	g_hInstance, eax
+	mov	hInstance, eax
 
     mov windowClass.cbSize, sizeof windowClass
     mov windowClass.style, CS_HREDRAW or CS_VREDRAW
@@ -136,7 +133,7 @@ WinMain proc hInstance:HINSTANCE, hPrevInst:HINSTANCE, CmdLine:LPSTR, CmdShow:DW
         480, ; but I didn't count that as "functionally equivalent"
         ebx,
         ebx,
-        g_hInstance,
+        hInstance,
         ebx
 
 MessageLoop:

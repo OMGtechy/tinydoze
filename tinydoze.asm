@@ -95,15 +95,15 @@ start proc
     mov ecx, offset c_AppName
     push ecx
 
-    mov windowClass.cbSize, sizeof windowClass
-    mov windowClass.style, CS_HREDRAW or CS_VREDRAW
-    mov windowClass.lpfnWndProc, offset WndProc
-    mov windowClass.cbClsExtra, ebx
-    mov windowClass.cbWndExtra, ebx
-    mov windowClass.hInstance, ebx
-    mov windowClass.hbrBackground, COLOR_3DSHADOW + 1
-    mov windowClass.lpszMenuName, ebx
-    mov windowClass.lpszClassName, ecx
+    xor windowClass.cbSize, sizeof windowClass
+    xor windowClass.style, CS_HREDRAW or CS_VREDRAW
+    xor windowClass.lpfnWndProc, offset WndProc
+    xor windowClass.cbClsExtra, ebx
+    xor windowClass.cbWndExtra, ebx
+    xor windowClass.hInstance, ebx
+    xor windowClass.hbrBackground, COLOR_3DSHADOW + 1
+    xor windowClass.lpszMenuName, ebx
+    xor windowClass.lpszClassName, ecx
 
     invoke LoadIconA,
         ebx,

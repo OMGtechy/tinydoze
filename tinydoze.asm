@@ -4,10 +4,8 @@ option casemap : none
 
 include \masm32\include\windows.inc
 include \masm32\include\user32.inc
-include \masm32\include\kernel32.inc
 include \masm32\include\gdi32.inc
 
-includelib \masm32\lib\kernel32.lib
 includelib \masm32\lib\user32.lib
 includelib \masm32\lib\gdi32.lib
 
@@ -84,11 +82,8 @@ start proc
 
     xor ebx, ebx
 
-	invoke GetModuleHandle,
-        ebx
-
     push ebx
-	push eax
+	push ebx
     push ebx
     push ebx
     push 480 ; you could write an 8 bit value here to use a smaller op code and save space
@@ -105,7 +100,7 @@ start proc
     mov windowClass.lpfnWndProc, offset WndProc
     mov windowClass.cbClsExtra, ebx
     mov windowClass.cbWndExtra, ebx
-    mov windowClass.hInstance, eax
+    mov windowClass.hInstance, ebx
     mov windowClass.hbrBackground, COLOR_3DSHADOW + 1
     mov windowClass.lpszMenuName, ebx
     mov windowClass.lpszClassName, ecx
